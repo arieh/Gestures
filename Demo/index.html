@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Gestures Demo</title>
+    <style type="text/css">
+        *{margin:0;padding:0}
+        ul{text-align:center; width:650px; margin:0 auto;}
+        
+        li{display:inline; list-style-type:none;}
+    
+    </style>
+</head>
+<body>
+    <h1>Gestures Demo</h1>
+    <h2>To see it in da works - use one of the following gestures, while keeping your right-mouse-button clicked</h2>
+    <p>If the gesture doesn't work, try doing it slower, then try to speed it up as you catch on. All of the gestures here were made with the Gesture generator.</p>
+    
+    <ul>
+    	<li><img src="right.png" alt="" /></li>
+    	<li><img src="left.png" alt="" /></li>
+    	<li><img src="up.png" alt="" /></li>
+    	<li><img src="down.png" alt="" /></li>
+    	<li><img src="x.png" alt="" /></li>
+    	<li><img src="z.png" alt="" /></li>
+    </ul>
+    
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/mootools/1.3.0/mootools-yui-compressed.js'></script>
+    <script type="text/javascript" src="../Source/Gestures.js"></script>
+    <script type="text/javascript" src="../Source/Gestures.Extra.js"></script>
+    <script type="text/javascript">
+    var g = new Gestures
+         , r = Gestures.Readymade;
+       
+    g.register(r.right);
+    g.register(r.left);
+    g.register(r.up);
+    g.register(r.down);
+    g.register(r.z);
+    g.register(r.x);
+    
+    g.addEvent('right',function(){alert('right!')});
+    g.addEvent('left',function(){alert('left`!')});
+    g.addEvent('up',function(){alert('Up!')});
+    g.addEvent('down',function(){alert('down!')});
+    g.addEvent('z',function(){alert('ZZZZZZZZZZZZZZZZz!')});
+    g.addEvent('x',function(){alert('XXXXXXXXXXXXXXXXX!')});
+    g.start();
+    </script>
+</body>
+</html>

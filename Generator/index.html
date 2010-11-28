@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+    <style type="text/css">
+    h1,p,div,pre{
+        margin:0 auto;
+    }
+    h1,p{width:960px;}
+    div#canvas{
+        border:1px #000 inset;
+        width:600px;
+        height:600px;
+    }
+    #generate{
+        color:#00f;
+        text-decoration:underline;
+        cursor:pointer;
+    }
+    </style>
+</head>
+<body>
+    <h1>Gesture Generator</h1>
+    <p>Perform your gesture multipe times on the canvas. For adding images, edit this file to insert images into it</p>
+    <p>When you're done, enter the name of the gesture and click generate. Note - you can later add more event names to the gesture.</p>
+    
+    <!-- you can replace the canvas with any other element - maybe an image with you outline/s on it. Just make sure it's ID is canvas-->
+    <div id="canvas"></div>
+    <p><input type="text" id="name" />
+    <span id="generate">generate class</span></p>
+    <pre id="result"></pre>
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/mootools/1.3.0/mootools-yui-compressed.js'></script>
+    <script type="text/javascript" src="../Source/Gestures.js"></script>
+    <script type="text/javascript">
+    var seqs = {};
+    
+    var g = new Gestures({target:'canvas'});
+    g.addEvent('end',function(seq){
+        var json = JSON.encode(seq);
+        if (!seqs[json]) seqs[json] = seq;
+        $('result').set('html','current sequence: '+json);
+    });
+    g.start();
+    $('generate').addEvent('click',function(){
+        var name = $('name').value;
+        var class_str = "var "+name+" = new Gesture(['"+name+"'],"+JSON.encode(Object.values(seqs))+");";
+        $('result').set('html',class_str);
+        seqs = [];
+    }); 
+    
+    </script>
+</body>
+</html>
