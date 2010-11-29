@@ -89,7 +89,7 @@ Gestures = new Class({
             });
         }
         , mouseDown : function(e){
-            if (!e.rightClick) return;
+            if (!e.rightClick && e.type == 'mousedown') return;
             this.sequence = [];
             this.startGesture(e.client);
             this.down = true;
@@ -100,7 +100,7 @@ Gestures = new Class({
             this.prevent = false;           
         }
         , stopEvent :function(e){
-            if (!e.rightClick) return;
+            if (!e.rightClick && e.type == 'mouseup') return;
             clearTimeout(this.handle);
            
             this.down = false;
