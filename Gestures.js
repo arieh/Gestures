@@ -75,7 +75,6 @@ Gestures = new Class({
                 , 'touchend' : this.stopEvent
             });
         }
-        
         , stop : function(){
             this.options.target.removeEvents({
                 'contextmenu' : this.contexMenu
