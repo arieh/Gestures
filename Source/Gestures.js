@@ -110,7 +110,10 @@ Gestures = new Class({
                 if (e.rightClick) this.prevent = true;
             }
             
-            this.options.target.removeEvent('mousemove',this.logSequence);
+            this.options.target.removeEvents({
+                'mousemove':this.logSequence
+                ,'touchmove': this.logSequence
+            });
             this.sequence = [];
         }
         , startGesture : function(pos){
@@ -118,7 +121,10 @@ Gestures = new Class({
             this.currentPos = pos;
             this.currentAngle = -1;
             this.fireEvent('start');
-            this.options.target.addEvent('mousemove',this.logSequence);
+            this.options.target.addEvents({
+                'mousemove':this.logSequence
+                ,'touchmove': this.logSequence
+            });
         }
         , getAngle : function(pos){
             function roundTo45(num){
